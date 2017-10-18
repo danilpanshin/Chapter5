@@ -55,9 +55,8 @@ class Main
     end
   end
 
+  private # данные методы не вызываются извне
 
-
-#make station
   def make_station
     puts "Enter station name"
     name = gets.chomp
@@ -65,7 +64,6 @@ class Main
     @stations << station
   end
 
-#make train
   def make_train
     puts "which train do you want to create? (Cargo or Passenger)"
     chose = gets.chomp
