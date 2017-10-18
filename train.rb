@@ -8,21 +8,26 @@ class Train
     @wagons =[]
   end
 
+  protected # единственное, что здесь можно поместить в protected,
+  # чтобы ничто из вне не могло установить отрицательную скорость
+
   def accelerate(num)
     @speed += num
   end
+
+  public
 
   def break
     @speed = 0
   end
 
   def take_wagon(wagon)
-    @wagons << wagon if wagon_true?(wagon)
+    @wagons << wagon if wagon.type == self.type && @speed == 0
   end
 
 
   def leave_wagon(wagon)
-    @wagons.pop if wagon_true?(wagon) && @wagons.any?
+    @wagons.pop if wagon.type == self.type && @wagons.any? && @speed == 0
   end
 
 

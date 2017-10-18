@@ -42,9 +42,9 @@ class Main
         when 4
           get_route
         when 5
-          get_wagon(wagon)
+          get_wagon
         when 6
-          push_wagon(wagon)
+          push_wagon
         when 7
           move_train
         when 8
@@ -69,18 +69,14 @@ class Main
   def make_train
     puts "which train do you want to create? (Cargo or Passenger)"
     chose = gets.chomp
+    puts "Enter number of train"
+    number = gets.chomp
     if chose == "Cargo"
-      puts "Enter number of train"
-      number = gets.chomp
       train = CargoTrain.new(number)
-      @trains << train
-
     elsif chose == "Passenger"
-      puts "Enter number of train"
-      number = gets.chomp
       train = PassengerTrain.new(number)
-      @trains << train
     end
+    @trains << train
   end
 
   def make_route
@@ -90,8 +86,7 @@ class Main
     last_station = choose_station
     puts "Add route name"
     name = gets.chomp
-    @route = Route.new(name,first_station, last_station)
-    @routes << @route
+    @routes = Route.new(name,first_station, last_station)
   end
 
   def choose_station
@@ -171,13 +166,23 @@ class Main
     train.back
   end
 
-  def get_wagon(wagon)
+  def get_wagon
     train = choose_train
+    if train.class == PassengerTrain
+      wagon = Passenger.new
+    elsif train.class == CargoTrain
+      wagon = Cargo.new
+    end
     train.take_wagon(wagon)
   end
 
-  def push_wagon(wagon)
+  def push_wagon
     train = choose_train
+    if train.class == PassengerTrain
+      wagon = Passenger.new
+    elsif train.class == CargoTrain
+      wagon = Cargo.new
+    end
     train.leave_wagon(wagon)
   end
 

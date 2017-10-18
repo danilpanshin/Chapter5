@@ -10,10 +10,6 @@ class PassengerTrain < Train
     @type = "passenger"
   end
 
-  def wagon_true?(wagon)
-    wagon.new.typ == self.type
-  end
-
 end
 
 

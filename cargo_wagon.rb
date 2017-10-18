@@ -1,7 +1,11 @@
-class Cargo
+require_relative 'wagon'
 
-  def typ
-    "cargo"
+class Cargo < Wagon
+
+  attr_reader :type
+
+  def initialize
+    @type = "cargo"
   end
 
 end
